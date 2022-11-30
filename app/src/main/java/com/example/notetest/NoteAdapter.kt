@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notetest.databinding.NoteItemBinding
@@ -24,10 +25,8 @@ class NoteAdapter(private val dataSet: ArrayList<Note> = arrayListOf()) :
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = NoteItemBinding.bind(view)
-
         init {
-            binding.root.setOnClickListener {
+            view.setOnClickListener {
                 Toast.makeText(view.context, "Click", Toast.LENGTH_LONG).show()
             }
         }
@@ -40,15 +39,17 @@ class NoteAdapter(private val dataSet: ArrayList<Note> = arrayListOf()) :
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.binding.titleItem.text = dataSet[position].title
-        viewHolder.binding.descriptionItem.text = dataSet[position].description
-        setFavourite(dataSet[position].isFavourite, viewHolder.binding.favItem)
-        viewHolder.binding.favItem.setOnClickListener {
+    override fun onBindViewHolder(vh: ViewHolder, position: Int) {
+
+        vh.itemView.findViewById<TextView>(R.id.title_item).text = dataSet[position].title
+        vh.itemView.findViewById<TextView>(R.id.description_item).text = dataSet[position].description
+        val favItem = vh.itemView.findViewById<ImageView>(R.id.fav_item)
+        setFavourite(dataSet[position].isFavourite, favItem )
+        favItem.setOnClickListener {
             dataSet[position].isFavourite = !dataSet[position].isFavourite
-            setFavourite(dataSet[position].isFavourite, viewHolder.binding.favItem)
+            setFavourite(dataSet[position].isFavourite, favItem)
         }
-        viewHolder.binding.root.setOnLongClickListener {
+        vh.itemView.setOnLongClickListener {
             deleteNote(position)
             true
         }

@@ -15,18 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/container_main"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="15dp"
-        android:elevation="5dp"
-        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="15dp">
+            android:layout_height="180dp"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <EditText
                 android:id="@+id/title_et_main"
@@ -53,8 +48,5 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:contentDescription="@string/add_note_button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

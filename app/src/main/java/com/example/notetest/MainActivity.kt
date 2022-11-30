@@ -1,26 +1,32 @@
 package com.example.notetest
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.notetest.databinding.ActivityMainBinding
 
-private lateinit var binding: ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(R.layout.activity_main)
+
+        val rv : RecyclerView = findViewById(R.id.rv_main)
+        val addBtnMain : Button = findViewById(R.id.add_btn_main)
+        val titleEtMain : EditText = findViewById(R.id.title_et_main)
+        val descriptionEtMain: EditText = findViewById(R.id.description_et_main)
+
         val adapter = NoteAdapter()
-        binding.rvMain.adapter = adapter
-        binding.rvMain.layoutManager = LinearLayoutManager(this)
-        binding.addBtnMain.setOnClickListener {
+        rv.adapter = adapter
+        rv.layoutManager = LinearLayoutManager(this)
+        addBtnMain.setOnClickListener {
             adapter.addNewNote(
                 Note(
-                    title = binding.titleEtMain.text.toString(),
-                    description = binding.descriptionEtMain.text.toString(),
+                    title = titleEtMain.text.toString(),
+                    description = descriptionEtMain.text.toString(),
                     isFavourite = false
                 )
             )
