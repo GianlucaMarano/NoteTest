@@ -24,7 +24,7 @@ class NoteAdapter(private val dataSet: ArrayList<Note> = arrayListOf()) :
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = NoteItemBinding.bind(view)
+        val binding = NoteItemBinding.bind(view)//bind singola nota tramite viewholder
 
         init {
             binding.root.setOnClickListener {
